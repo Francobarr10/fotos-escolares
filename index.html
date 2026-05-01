@@ -67,7 +67,7 @@ document.getElementById("pedidoForm").addEventListener("submit", async function(
   };
 
   try {
-    const res = await fetch("http://localhost:3000/crear-pago", {
+    const res = await fetch("/crear-pago", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
