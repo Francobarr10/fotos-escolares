@@ -59,7 +59,13 @@ app.post("/crear-pago", async (req, res) => {
   res.status(500).send("Error al crear pago");
 }
 });
+app.post("/webhook", (req, res) => {
+  console.log("WEBHOOK RECIBIDO:", req.body);
 
+  // acá después vamos a validar el pago
+
+  res.sendStatus(200);
+});
 app.listen(3000, () => {
   console.log("Servidor corriendo en puerto 3000");
 });
