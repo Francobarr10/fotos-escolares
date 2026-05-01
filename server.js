@@ -30,23 +30,23 @@ app.post("/crear-pago", async (req, res) => {
   try {
     const preference = new Preference(client);
 
-    const response = await preference.create({
-      body: {
-        items: [
-          {
-            title: `Fotos escolares - ${paquete}`,
-            quantity: 1,
-            unit_price: Number(precios[paquete]),
-            currency_id: "ARS"
-          }
-        ],
-        back_urls: {
-          success: "http://localhost:3000",
-          failure: "http://localhost:3000"
-        }
+const response = await preference.create({
+  body: {
+    items: [
+      {
+        title: `Fotos escolares - ${paquete}`,
+        quantity: 1,
+        unit_price: Number(precios[paquete]),
+        currency_id: "ARS"
       }
-    });
-
+    ],
+    back_urls: {
+      success: "https://fotos-escolares-en0h.onrender.com",
+      failure: "https://fotos-escolares-en0h.onrender.com"
+    },
+    notification_url: "https://fotos-escolares-en0h.onrender.com/webhook"
+  }
+});
     res.json({ init_point: response.init_point });
 
   }catch (error) {
