@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname)));
 
 // 🔐 CONFIG NUEVA
 const client = new MercadoPagoConfig({
-  accessToken: "TEST-592249707142634-043019-46d0fa0b103523505f523424294a13bc-537843020"
+  accessToken: process.env.MP_TOKEN
 });
 
 // 🧪 Ruta base
