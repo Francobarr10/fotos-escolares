@@ -22,7 +22,7 @@ app.post("/crear-pago", async (req, res) => {
   console.log("Datos recibidos:", alumno, curso, paquete);
 
   const precios = {
-    "Básico": 3000,
+    "Básico": 100,
     "Intermedio": 5000,
     "Completo": 8000
   };
