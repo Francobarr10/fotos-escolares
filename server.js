@@ -49,12 +49,13 @@ app.post("/crear-pago", async (req, res) => {
 
     res.json({ init_point: response.init_point });
 
-  } catch (error) {
-  console.log("ERROR COMPLETO:");
+  }catch (error) {
+  console.log("=== ERROR MP ===");
   console.log(error);
-  console.log("STATUS:", error.status);
-  console.log("MESSAGE:", error.message);
-  console.log("CAUSE:", error.cause);
+  console.log("STATUS:", error?.status);
+  console.log("MESSAGE:", error?.message);
+  console.log("CAUSE:", error?.cause);
+  console.log("FULL:", JSON.stringify(error, null, 2));
   res.status(500).send("Error al crear pago");
 }
 });
