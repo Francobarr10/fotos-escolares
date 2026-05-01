@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedidos Fotos Escolares</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body{
+      font-family: Arial;
+      background:#f5f5f5;
+      padding:2rem;
+    }
+    .box{
+      max-width:500px;
+      margin:auto;
+      background:#fff;
+      padding:2rem;
+      border-radius:10px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    }
+    input, select{
+      width:100%;
+      padding:10px;
+      margin:8px 0;
+    }
+    button{
+      width:100%;
+      padding:12px;
+      background:#009ee3;
+      color:#fff;
+      border:none;
+      cursor:pointer;
+      font-size:16px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+  <h2>Pedido Fotos Escolares</h2>
+
+  <form id="pedidoForm">
+    <input type="text" id="alumno" placeholder="Nombre del alumno" required>
+    <input type="text" id="curso" placeholder="Curso" required>
+
+    <select id="paquete" required>
+      <option value="">Seleccionar paquete</option>
+      <option>Básico</option>
+      <option>Intermedio</option>
+      <option>Completo</option>
+    </select>
+
+    <button type="submit">Ir a pagar</button>
+  </form>
+</div>
+
+<script>
+document.getElementById("pedidoForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const datos = {
+    alumno: document.getElementById("alumno").value,
+    curso: document.getElementById("curso").value,
+    paquete: document.getElementById("paquete").value
+  };
+
+  try {
+    const res = await fetch("http://localhost:3000/crear-pago", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(datos)
+    });
+
+    const data = await res.json();
+
+    // 🚀 Redirige al pago
+    window.location.href = data.init_point;
+
+  } catch (error) {
+    alert("Error al generar el pago");
+    console.log(error);
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "fotos-escolares",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mercadopago": "^2.12.0",
+    "path": "^0.12.7"
+  }
+}
